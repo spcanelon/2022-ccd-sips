@@ -3,7 +3,7 @@
 # Philly Center City District Sips 2022: An Interactive Map
 **An R tutorial created for [R-Ladies Philly](https://www.rladiesphilly.org/)**
 
-![](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75){fig-alt="Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly."}
+!["Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly."](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75)
 
 Are you interested in learning how to work with geographic data? How to scrape data from the web? How to use an API to access data? How to plot your geographic data and make it all interactive and interesting? If so, this beginner-friendly workshop is for you.
 
