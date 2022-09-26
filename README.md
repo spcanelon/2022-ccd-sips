@@ -12,9 +12,10 @@ Join us as Silvia Canelón provides a gentle introduction to web-scraping, geoco
 All of the code and the data will be available in an RStudio cloud project to make coding along even easier. This workshop is based on Silvia's previously shared [tutorial](https://silviacanelon.com/blog/2022-ccd-sips/#building-the-map).
 
 ## Links
-- [Quarto tutorial](https://spcanelon.github.io/ccd-sips-2022)
 - [Event page](https://www.meetup.com/rladies-philly/events/287894111/)
-- [RStudio Cloud project (coming soon!)]()
+- [Slides (coming soon!)](https://slides.silviacanelon.com/2022-ccd-sips)
+- [Quarto tutorial](https://spcanelon.github.io/2022-ccd-sips)
+- [RStudio Cloud project)](https://rstudio.cloud/content/4597043)
 
 ---
 
