@@ -8,6 +8,7 @@ format:
     toc: true
     code-overflow: wrap
     code-link: true
+    self-contained: true
 ---
 
 ![](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75){fig-alt="Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly."}
