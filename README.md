@@ -1,7 +1,7 @@
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
 # Philly Center City District Sips 2022: An Interactive Map
-**An R tutorial created for [R-Ladies Philly](https://www.rladiesphilly.org/)**
+**An R tutorial [created for R-Ladies Philly](https://silviacanelon.com/talk/2022-ccd-sips)**
 
 !["Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly."](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75)
 
