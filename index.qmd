@@ -11,14 +11,22 @@ format:
     self-contained: true
 ---
 
-![](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75){fig-alt="Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly."}
+![](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75){fig-alt="Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly." fig-align="center"}
+
+## Introduction
+
+The [2022 Center City District Sips](https://centercityphila.org/explore-center-city/ccd-sips) website features all of the restaurants participating in the Center City Sips event, but does not offer a map view. This makes it hard to locate a happy hour special nearby, so we're going to use the data they provide to build an interactive map!
+
+1. [Scrape restaurants and addresses from the website](#scraping-the-data)
+2. [Geocode the restaurant addresses to obtain geographical coordinates](#geocoding-addresses)
+3. [Build an interactive map with `leaflet`](#building-the-map)
 
 
 | Package          | Purpose                                        | Version  |
 |------------------|------------------------------------------------|----------|
 | `tidyverse`      | Data manipulation and iteration functions      | 1.3.2.90 |
 | `here`           | File referencing in project-oriented workflows | 0.7.13   |
-| `kableExtra`     | Style data frame output into formatted table   | 1.3.4    |
+| `knitr     `     | Style data frame output into formatted table   | 1.40     |
 | `robotstxt`      | Check website for scraping permissions         | 0.7.13   |
 | `rvest`          | Scrape the information off of the website      | 1.0.3    |
 | `ggmap`          | Geocode the restaurant addresses               | 3.0.0    |
@@ -30,7 +38,7 @@ format:
 
 library(tidyverse)
 library(here)
-library(kableExtra)
+library(knitr)
 library(robotstxt)
 library(rvest)
 library(ggmap)
@@ -39,6 +47,8 @@ library(leaflet.extras)
 ```
 
 ## Scraping the data
+
+We will scrape the data from the [2022 Center City District Sips]() website, specifically the list view: <https://centercityphila.org/explore-center-city/ccd-sips/sips-list-view>
 
 ### Checking site permissions
 
