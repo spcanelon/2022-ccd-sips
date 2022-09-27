@@ -34,7 +34,7 @@ The [2022 Center City District Sips](https://centercityphila.org/explore-center-
 | `knitr     `     | Style data frame output into formatted table   | 1.40     |
 | `robotstxt`      | Check website for scraping permissions         | 0.7.13   |
 | `rvest`          | Scrape the information off of the website      | 1.0.3    |
-| `ggmap`          | Geocode the restaurant addresses               | 3.0.0    |
+| `tidygeocoder`   | Geocode the restaurant addresses               | 1.0.5    |
 | `leaflet`        | Build the interactive map                      | 2.1.1    |
 | `leaflet.extras` | Add extra functionality to map                 | 1.0.0    |
 
@@ -46,7 +46,7 @@ library(here)
 library(knitr)
 library(robotstxt)
 library(rvest)
-library(ggmap)
+library(tidygeocoder)
 library(leaflet)
 library(leaflet.extras)
 ```
@@ -149,7 +149,7 @@ Then we can combine all the data frames together and saved the complete data fra
 Skip this step and load the data from the `data/` folder:
 
 ```{r load-scraped-specials}
-table <- read_rds(here("data/specialsScraped.Rds"))
+table <- read_rds(here("data", "specialsScraped.Rds"))
 ```
 :::
 
@@ -173,39 +173,22 @@ table |> head() |> kable()
 
 # save full table to file
 write_rds(table,
-          file = here("data/specialsScraped.Rds"))
+          file = here("data", "specialsScraped.Rds"))
 ```
 
 ## Geocoding addresses
 
-The next step is to use geocoding to convert the restaurant/bar addresses to geographical coordinates (longitude and latitude) that we can map. We can use the [ggmap](https://github.com/dkahle/ggmap) package and the Google Geocoding API service. This is a small project (59 addresses/requests) so it barely impacts the [free credit available on the platform](https://mapsplatform.google.com/pricing/). The key can be restricted to the Geocoding and Geolocation APIs.
+The next step is to use geocoding to convert the restaurant/bar addresses to geographical coordinates (longitude and latitude) that we can map. We can use the [tidygeocoder](https://jessecambon.github.io/tidygeocoder) package to help us, and specify that we want to use the [Nominatum](https://nominatim.org/) open source geocoding service.
 
-:::{.callout-tip}
-## Shortcut
-
-Skip this step and load the data from the `data/` folder:
-
-```{r load-geocoded-specials}
-specials <- read_rds(here("data/specialsGeocoded.Rds"))
-```
-:::
 
 ```{r, geocode-addresses}
-#| eval: false
-
-# register your API key
-# ggmap::register_google(key = "[your key]")
-
 # geocode addresses
-specials_ggmap <- 
-  table |> 
-  mutate_geocode(Address)
-
-# rename new variables
 specials <- 
-  specials_ggmap |> 
-  rename(Longitude = lon,
-         Latitude = lat) 
+  table |> 
+  geocode(address = Address,
+          method = 'osm', 
+          long = Longitude,
+          lat = Latitude)
 ```
 
 ```{r show-specials-geocoded}
@@ -215,11 +198,9 @@ specials |> head() |> kable()
 Make sure to save the new data frame with geographical coordinates as an `.Rds` object so you won't have to geocode the data again! This is particularly important if you ever want to work with a large project.
 
 ```{r save-geocoded-specials}
-#| eval: false
-
 # save table with geocoded addresses to file
 write_rds(specials,
-          file = here("data/specialsGeocoded.Rds"))
+          file = here("data", "specialsGeocoded.Rds"))
 ```
 
 ## Building the map
