@@ -1,6 +1,6 @@
 ---
 title: "Philly Center City District Sips 2022: An Interactive Map"
-subtitle: "[R-Ladies Philly workshop](https://www.meetup.com/rladies-philly/events/287894111/) on webscraping, geocoding, and interactive map-making"
+subtitle: "[R-Ladies Philly](https://www.rladiesphilly.org/) workshop on webscraping, geocoding, and interactive map-making"
 author: "Silvia Canelón"
 date: 2022-09-29
 format: 
