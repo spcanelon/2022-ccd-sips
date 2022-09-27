@@ -1,7 +1,7 @@
 ---
 title: "Philly Center City District Sips 2022: An Interactive Map"
 subtitle: "[R-Ladies Philly](https://www.rladiesphilly.org/) workshop on webscraping, geocoding, and interactive map-making"
-author: "Silvia Canelón"
+author: "[Silvia Canelón](https://silviacanelon.com)"
 date: 2022-09-29
 format: 
   html:
@@ -16,6 +16,8 @@ format:
 ![](https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F506372053%2F676x380.webp&w=3840&q=75){fig-alt="Silvia Canelón presents Webscraping, Geocoding & Interactive Map-Making with Center City Sips Data. R-Ladies Philly." fig-align="center"}
 
 ## Introduction
+
+This workshop is adapted from a [blog post](https://silviacanelon.com/blog/2022-ccd-sips) of the same name and is accompanied by [slides](https://slides.silviacanelon.com/2022-ccd-sips).
 
 The [2022 Center City District Sips](https://centercityphila.org/explore-center-city/ccd-sips) website features all of the restaurants participating in the Center City Sips event, but does not offer a map view. This makes it hard to locate a happy hour special nearby, so we're going to use the data they provide to build an interactive map!
 
