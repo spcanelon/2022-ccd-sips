@@ -21,6 +21,7 @@ The [2022 Center City District Sips](https://centercityphila.org/explore-center-
 2. [Geocode the restaurant addresses to obtain geographical coordinates](#geocoding-addresses)
 3. [Build an interactive map with `leaflet`](#building-the-map)
 
+### Packages
 
 | Package          | Purpose                                        | Version  |
 |------------------|------------------------------------------------|----------|
