@@ -13,7 +13,7 @@ All of the code and the data will be available in an RStudio cloud project to ma
 
 ## Links
 - [Event page](https://www.meetup.com/rladies-philly/events/287894111/)
-- [Slides (coming soon!)](https://slides.silviacanelon.com/2022-ccd-sips)
+- [Slides](https://slides.silviacanelon.com/2022-ccd-sips)
 - [Quarto tutorial](https://spcanelon.github.io/2022-ccd-sips)
 - [RStudio Cloud project](https://rstudio.cloud/content/4597043)
 
