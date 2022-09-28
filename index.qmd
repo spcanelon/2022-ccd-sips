@@ -17,7 +17,11 @@ format:
 
 ## Introduction
 
+::: {.aside}
+
 This workshop is adapted from a [blog post](https://silviacanelon.com/blog/2022-ccd-sips) of the same name and is accompanied by [slides](https://slides.silviacanelon.com/2022-ccd-sips).
+
+:::
 
 The [2022 Center City District Sips](https://centercityphila.org/explore-center-city/ccd-sips) website features all of the restaurants participating in the Center City Sips event, but does not offer a map view. This makes it hard to locate a happy hour special nearby, so we're going to use the data they provide to build an interactive map!
 
@@ -178,7 +182,7 @@ write_rds(table,
 
 ## Geocoding addresses
 
-The next step is to use geocoding to convert the restaurant/bar addresses to geographical coordinates (longitude and latitude) that we can map. We can use the [tidygeocoder](https://jessecambon.github.io/tidygeocoder) package to help us, and specify that we want to use the [Nominatum](https://nominatim.org/) open source geocoding service.
+The next step is to use geocoding to convert the restaurant/bar addresses to geographical coordinates (longitude and latitude) that we can map. We can use the [tidygeocoder](https://jessecambon.github.io/tidygeocoder) package to help us, and specify that we want to use the [ArcGIS](https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm) geocoding service.
 
 
 ```{r, geocode-addresses}
@@ -186,7 +190,7 @@ The next step is to use geocoding to convert the restaurant/bar addresses to geo
 specials <- 
   table |> 
   geocode(address = Address,
-          method = 'osm', 
+          method = 'arcgis', 
           long = Longitude,
           lat = Latitude)
 ```
