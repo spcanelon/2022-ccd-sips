@@ -223,36 +223,6 @@ Add a [Google Font](https://fonts.google.com/) with a `css` chunk that imports t
 ```
 :::
 
-### Customizing map markers
-
-```{r style-markers}
-# style pop-ups for the map with inline css styling
-
-# marker for the restaurants/bars
-popInfoCircles <- paste(
-  "<h2 style='font-family: Red Hat Text, sans-serif; font-size: 1.6em; color:#43464C;'>", 
-  "<a style='color: #00857A;' href=", specials$Specials, ">", specials$Name, "</a></h2>",
-  "<p style='font-family: Red Hat Text, sans-serif; font-weight: normal; font-size: 1.5em; color:#9197A6;'>", specials$Address, "</p>"
-  )
-
-# marker for the center of the map
-popInfoMarker<-paste(
-  "<h1 style='padding-top: 0.5em; margin-top: 1em; margin-bottom: 0.5em; font-family: Red Hat Text, sans-serif; font-size: 1.8em; color:#43464C;'>", 
-  "<a style='color: #00857A;' href='https://centercityphila.org/explore-center-city/ccdsips'>",
-  "Center City District Sips 2022", 
-  "</a></h1><p style='color:#9197A6; font-family: Red Hat Text, sans-serif; font-size: 1.5em; padding-bottom: 1em;'>", 
-  "Philadelphia, PA", "</p>")
-
-# custom icon for the center of the map
-awesome <-
-  makeAwesomeIcon(
-    icon = "map-pin",
-    iconColor = "#FFFFFF",
-    markerColor = "darkblue",
-    library = "fa"
-  )
-```
-
 ### Plotting the restaurants/bars
 
 ```{r add-restaurants}
@@ -265,23 +235,20 @@ leaflet(data = specials,
   # add map markers
   addCircles(
     lat = ~ specials$Latitude, 
-    lng = ~ specials$Longitude, 
-    fillColor = "#009E91",
-    fillOpacity = 0.6, 
-    stroke = F,
-    radius = 12, 
-    popup = popInfoCircles,
+    lng = ~ specials$Longitude,
+    popup = specials$Address,
     label = ~ Name,
     labelOptions = labelOptions(
       style = list(
         "font-family" = "Red Hat Text, sans-serif",
         "font-size" = "1.2em")
-      ))
+      )
+    )
 ```
 
 ### Adding the map background
 
-```{r add-background}
+```{r add-basemap}
 leaflet(data = specials, 
         width = "100%", 
         height = "850px",
@@ -292,17 +259,14 @@ leaflet(data = specials,
   addCircles(
     lat = ~ specials$Latitude, 
     lng = ~ specials$Longitude, 
-    fillColor = "#009E91",
-    fillOpacity = 0.6, 
-    stroke = F,
-    radius = 12, 
-    popup = popInfoCircles,
+    popup = specials$Address,
     label = ~ Name,
     labelOptions = labelOptions(
       style = list(
         "font-family" = "Red Hat Text, sans-serif",
         "font-size" = "1.2em")
-      )) |>
+      )
+    ) |>
   # add map tiles in the background
   addProviderTiles(providers$CartoDB.Positron)
 ```
@@ -320,68 +284,20 @@ leaflet(data = specials,
   addCircles(
     lat = ~ specials$Latitude, 
     lng = ~ specials$Longitude, 
-    fillColor = "#009E91",
-    fillOpacity = 0.6, 
-    stroke = F,
-    radius = 12, 
-    popup = popInfoCircles,
+    popup = specials$Address,
     label = ~ Name,
     labelOptions = labelOptions(
       style = list(
         "font-family" = "Red Hat Text, sans-serif",
         "font-size" = "1.2em")
-      )) |>
+      )
+    ) |>
   # add map tiles in the background
   addProviderTiles(providers$CartoDB.Positron) |>
   # set the map view
   setView(mean(specials$Longitude), 
           mean(specials$Latitude), 
           zoom = 16)
-```
-
-### Adding a marker at the center
-
-```{r add-marker}
-leaflet(data = specials, 
-        width = "100%", 
-        height = "850px",
-        # https://stackoverflow.com/a/42170340
-        options = tileOptions(minZoom = 15,
-                              maxZoom = 19)) |>
-  # add map markers
-  addCircles(
-    lat = ~ specials$Latitude, 
-    lng = ~ specials$Longitude, 
-    fillColor = "#009E91",
-    fillOpacity = 0.6,
-    stroke = F,
-    radius = 12, 
-    popup = popInfoCircles,
-    label = ~ Name,
-    labelOptions = labelOptions(
-      style = list(
-        "font-family" = "Red Hat Text, sans-serif",
-        "font-size" = "1.2em")
-      )) |>
-  # add map tiles in the background
-  addProviderTiles(providers$CartoDB.Positron) |>
-  # set the map view
-  setView(mean(specials$Longitude), 
-          mean(specials$Latitude), 
-          zoom = 16) |>
-  # add marker at the center
-  addAwesomeMarkers(
-    icon = awesome,
-    lng = mean(specials$Longitude), 
-    lat = mean(specials$Latitude), 
-    label = "Center City District Sips 2022",
-    labelOptions = labelOptions(
-      style = list(
-        "font-family" = "Red Hat Text, sans-serif",
-        "font-size" = "1.2em")
-      ),
-    popup = popInfoMarker,
-    popupOptions = popupOptions(maxWidth = 250))
 ```
 
 ### Adding fullscreen control
@@ -397,26 +313,129 @@ leaflet(data = specials,
   addCircles(
     lat = ~ specials$Latitude, 
     lng = ~ specials$Longitude, 
-    fillColor = "#009E91",
-    fillOpacity = 0.6, 
-    stroke = F,
-    radius = 12, 
-    popup = popInfoCircles,
+    popup = specials$Address,
     label = ~ Name,
     labelOptions = labelOptions(
       style = list(
         "font-family" = "Red Hat Text, sans-serif",
         "font-size" = "1.2em")
-      )) |>
+      )
+    ) |>
   # add map tiles in the background
   addProviderTiles(providers$CartoDB.Positron) |>
   # set the map view
   setView(mean(specials$Longitude), 
           mean(specials$Latitude), 
           zoom = 16) |>
+  # add fullscreen control button
+  leaflet.extras::addFullscreenControl()
+```
+
+### Customizing map markers
+
+```{r style-markers}
+# style pop-ups for the map with inline css styling
+
+# marker for the restaurants/bars
+popInfoCircles <- paste(
+  "<h2 style='font-family: Red Hat Text, sans-serif; font-size: 1.6em; color:#43464C;'>", 
+  "<a style='color: #00857A;' href=", specials$Specials, ">", specials$Name, "</a></h2>",
+  "<p style='font-family: Red Hat Text, sans-serif; font-weight: normal; font-size: 1.5em; color:#9197A6;'>", specials$Address, "</p>"
+  )
+```
+
+```{r customize-marker-labels}
+leaflet(data = specials, 
+        width = "100%", 
+        height = "850px",
+        # https://stackoverflow.com/a/42170340
+        options = tileOptions(minZoom = 15,
+                              maxZoom = 19)) |>
+  # add map markers
+  addCircles(
+    lat = ~ specials$Latitude, 
+    lng = ~ specials$Longitude,
+    # customize markers
+    fillColor = "#009E91",
+    fillOpacity = 0.6, 
+    stroke = F,
+    radius = 12,
+    # customize pop-ups
+    popup = popInfoCircles,
+    label = ~ Name,
+    labelOptions = labelOptions(
+      style = list(
+        "font-family" = "Red Hat Text, sans-serif",
+        "font-size" = "1.2em")
+      )
+    ) |>
+  # add map tiles in the background
+  addProviderTiles(providers$CartoDB.Positron) |>
+  # set the map view
+  setView(mean(specials$Longitude), 
+          mean(specials$Latitude), 
+          zoom = 16) |> 
+  # add fullscreen control button
+  leaflet.extras::addFullscreenControl()
+```
+
+### Adding a marker at the center
+
+```{r style-center-marker}
+# marker for the center of the map
+popInfoMarker <- paste(
+  "<h1 style='padding-top: 0.5em; margin-top: 1em; margin-bottom: 0.5em; font-family: Red Hat Text, sans-serif; font-size: 1.8em; color:#43464C;'>", 
+  "<a style='color: #00857A;' href='https://centercityphila.org/explore-center-city/ccdsips'>",
+  "Center City District Sips 2022", 
+  "</a></h1><p style='color:#9197A6; font-family: Red Hat Text, sans-serif; font-size: 1.5em; padding-bottom: 1em;'>", 
+  "Philadelphia, PA", "</p>")
+
+# custom icon for the center of the map
+centerIcon <-
+  makeAwesomeIcon(
+    icon = "map-pin",
+    iconColor = "#FFFFFF",
+    markerColor = "darkblue", # accepts HTML colors
+    library = "fa"
+  )
+```
+
+```{r add-center-marker}
+leaflet(data = specials, 
+        width = "100%", 
+        height = "850px",
+        # https://stackoverflow.com/a/42170340
+        options = tileOptions(minZoom = 15,
+                              maxZoom = 19)) |>
+  # add map markers
+  addCircles(
+    lat = ~ specials$Latitude, 
+    lng = ~ specials$Longitude, 
+    # customize markers
+    fillColor = "#009E91",
+    fillOpacity = 0.6, 
+    stroke = F,
+    radius = 12,
+    # customize pop-ups
+    popup = popInfoCircles,
+    label = ~ Name,
+    labelOptions = labelOptions(
+      style = list(
+        "font-family" = "Red Hat Text, sans-serif",
+        "font-size" = "1.2em")
+      )
+    ) |>
+  # add map tiles in the background
+  addProviderTiles(providers$CartoDB.Positron) |>
+  # set the map view
+  setView(mean(specials$Longitude), 
+          mean(specials$Latitude), 
+          zoom = 16) |> 
+  # add fullscreen control button
+  leaflet.extras::addFullscreenControl() |> 
   # add marker at the center
   addAwesomeMarkers(
-    icon = awesome,
+    icon = centerIcon,
     lng = mean(specials$Longitude), 
     lat = mean(specials$Latitude), 
     label = "Center City District Sips 2022",
@@ -426,7 +445,5 @@ leaflet(data = specials,
         "font-size" = "1.2em")
       ),
     popup = popInfoMarker,
-    popupOptions = popupOptions(maxWidth = 250)) |> 
-  # add fullscreen control button
-  leaflet.extras::addFullscreenControl()
+    popupOptions = popupOptions(maxWidth = 250))
 ```
