@@ -17,11 +17,7 @@ format:
 
 ## Introduction
 
-::: {.aside}
-
 This workshop is adapted from a [blog post](https://silviacanelon.com/blog/2022-ccd-sips) of the same name and is accompanied by [slides](https://slides.silviacanelon.com/2022-ccd-sips).
-
-:::
 
 The [2022 Center City District Sips](https://centercityphila.org/explore-center-city/ccd-sips) website features all of the restaurants participating in the Center City Sips event, but does not offer a map view. This makes it hard to locate a happy hour special nearby, so we're going to use the data they provide to build an interactive map!
 
@@ -147,7 +143,8 @@ We can use the `getTable()` function and the `purrr::map_df()` function to harve
 
 Then we can combine all the data frames together and saved the complete data frame as an `.Rds` object so that we won't have to scrape the data again.
 
-:::{.callout-tip}
+::: {.callout-tip}
+
 ## Shortcut
 
 Skip this step and load the data from the `data/` folder:
@@ -155,6 +152,7 @@ Skip this step and load the data from the `data/` folder:
 ```{r load-scraped-specials}
 table <- read_rds(here("data", "specialsScraped.Rds"))
 ```
+
 :::
 
 ```{r scrape-remaining, eval=FALSE}
@@ -211,7 +209,8 @@ write_rds(specials,
 
 To build the map, we can use the [leaflet](https://rstudio.github.io/leaflet/) package.
 
-::: callout-tip
+::: {.callout-tip}
+
 # Tip
 
 Add a [Google Font](https://fonts.google.com/) with a `css` chunk that imports the font face(s) and weights you want to use (e.g. Red Hat Text)
@@ -221,6 +220,7 @@ Add a [Google Font](https://fonts.google.com/) with a `css` chunk that imports t
 
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 ```
+
 :::
 
 ### Plotting the restaurants/bars
