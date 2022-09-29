@@ -405,8 +405,8 @@ leaflet(data = specials,
     radius = 12,
     # customize pop-ups
     popup = popInfoCircles,
-    # customize labels
     label = ~ Name,
+    # customize labels
     labelOptions = labelOptions(
       style = list(
         "font-family" = "Red Hat Text, sans-serif",
